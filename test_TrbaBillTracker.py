@@ -31,20 +31,20 @@ def test_TrbaBillTracker():
         assert "TLO" in page.title()
 
         # Wait a few seconds
-        Wait(3000)
+        Wait(3000, page)
 
         # Search the first bill
         page.locator("input[name='txtBill']").highlight()
         page.locator("input[name='txtBill']").type(billList[0])
 
         # Wait a few seconds
-        Wait(3000)
+        Wait(3000, page)
 
         # Click the submit button
         page.locator("input[name='btnSubmit']").click()
         
         # Wait a few seconds
-        Wait(5000)
+        Wait(5000, page)
 
         # Close the Browser Out
         browser.close()
