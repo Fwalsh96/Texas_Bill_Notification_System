@@ -1,11 +1,14 @@
 from playwright.sync_api import sync_playwright
 import pandas as pd
+import CommonActions
+import TirbaFunctions
 
 def test_TrbaBillTracker():
     with sync_playwright() as p:
 
         # Variables
-        fileName = "C:\\Users\\Brack\\Documents\\TRBA Automation\\BillFolder\\BillFile.XLSX"
+        fileName = "BillFolder\\BillFile.xlsx"
+        # fileName = "C:\\Users\\Brack\\Documents\\TRBA Automation\\BillFolder\\BillFile.XLSX"
         df = pd.read_excel(fileName)
         columnNames = df.columns.tolist()
         billList = []
@@ -30,27 +33,37 @@ def test_TrbaBillTracker():
         # Assert that we are on the correct page
         assert "TLO" in page.title()
 
+
+
         # Wait a few seconds
-        Wait(3000, page)
+        CommonActions.Wait(3000, page)
+
+        # Select the Legislative Session
+        CommonActions.SelectSession(page, "89(R) - 2025")
+
+        # Select the Bill Number
+        page.locator("input[value='rbBillNumber']").click()
 
         # Search the first bill
-        page.locator("input[name='txtBill']").highlight()
         page.locator("input[name='txtBill']").type(billList[0])
 
         # Wait a few seconds
-        Wait(3000, page)
+        CommonActions.Wait(3000, page)
 
         # Click the submit button
         page.locator("input[name='btnSubmit']").click()
-        
+
+
         # Wait a few seconds
-        Wait(5000, page)
+        CommonActions.Wait(5000, page)
+
+        
+        BillNum = page.locator("span[id='usrBillInfoTabs_lblBill']").text_content()
+
+        print(BillNum)
+
+        # Testing TIRBA File
+        # TirbaFunctions.RunBillComparison(page, "Test")
 
         # Close the Browser Out
         browser.close()
-
-# function to wait a few seconds
-def Wait(time, page):
-    page.wait_for_timeout(time)
-
-    
