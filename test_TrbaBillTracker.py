@@ -11,7 +11,6 @@ def test_TrbaBillTracker():
         df = pd.read_excel(fileName)
         columnNames = df.columns.tolist()
         billList = []
-        # rowNames = df
 
         # Create a list of the bill numbers
         for index, row in df.iterrows():
@@ -41,6 +40,12 @@ def test_TrbaBillTracker():
 
         # Compare First Bill
         TirbaFunctions.RunBillComparison(page, billList[0])
+
+        # Loop through the rest of the bills
+        page.locator("input[name='NextBill']").fill(billList[1])
+
+        # Wait a few seconds
+        CommonActions.Wait(5000, page)
 
         # Close the Browser Out
         browser.close()
