@@ -8,7 +8,6 @@ def test_TrbaBillTracker():
 
         # Variables
         fileName = "BillFolder\\BillFile.xlsx"
-        # fileName = "C:\\Users\\Brack\\Documents\\TRBA Automation\\BillFolder\\BillFile.XLSX"
         df = pd.read_excel(fileName)
         columnNames = df.columns.tolist()
         billList = []
@@ -33,37 +32,22 @@ def test_TrbaBillTracker():
         # Assert that we are on the correct page
         assert "TLO" in page.title()
 
-
-
-        # Wait a few seconds
-        CommonActions.Wait(3000, page)
-
-        # Select the Legislative Session
-        CommonActions.SelectSession(page, "89(R) - 2025")
-
-        # Select the Bill Number
-        page.locator("input[value='rbBillNumber']").click()
-
-        # Search the first bill
-        page.locator("input[name='txtBill']").type(billList[0])
-
-        # Wait a few seconds
-        CommonActions.Wait(3000, page)
-
-        # Click the submit button
-        page.locator("input[name='btnSubmit']").click()
-
+        # Search the First Bill in the list
+        print(billList[0])
+        TirbaFunctions.SearchFirstBill(page, "89(R) - 2025", billList[0])
 
         # Wait a few seconds
         CommonActions.Wait(5000, page)
 
-        
-        BillNum = page.locator("span[id='usrBillInfoTabs_lblBill']").text_content()
+        # Compare First Bill
+        TirbaFunctions.RunBillComparison(page, billList[0])
 
-        print(BillNum)
+        # BillNum = page.locator("span[id='usrBillInfoTabs_lblBill']").text_content()
+
+        # print(BillNum)
 
         # Testing TIRBA File
-        # TirbaFunctions.RunBillComparison(page, "Test")
+        # TirbaFunctions.RunBillComparison(page, BillNum)
 
         # Close the Browser Out
         browser.close()
