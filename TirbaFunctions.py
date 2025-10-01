@@ -28,13 +28,8 @@ def RunBillComparison(page, BillNum):
     # Get page values
     OnPageBillNum = page.locator("span[id='usrBillInfoTabs_lblBill']").inner_text()
 
-    print("On Page Bill Num: " + OnPageBillNum)
-
     # Validate the Text on the page is the same as in the file
     if(BillNum == OnPageBillNum): # If its the same, report back 'Same'
         print("Same")
     else: # Otherwise write in the file
         print("Not Same")
-
-    # Basic Method
-    print(BillNum)

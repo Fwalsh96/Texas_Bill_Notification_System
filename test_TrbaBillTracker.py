@@ -42,12 +42,5 @@ def test_TrbaBillTracker():
         # Compare First Bill
         TirbaFunctions.RunBillComparison(page, billList[0])
 
-        # BillNum = page.locator("span[id='usrBillInfoTabs_lblBill']").text_content()
-
-        # print(BillNum)
-
-        # Testing TIRBA File
-        # TirbaFunctions.RunBillComparison(page, BillNum)
-
         # Close the Browser Out
         browser.close()
