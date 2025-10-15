@@ -33,3 +33,9 @@ def RunBillComparison(page, BillNum):
         print("Same")
     else: # Otherwise write in the file
         print("Not Same")
+
+
+def SearchOnBillInfoScreen(page, BillNum):
+
+    
+    print("1234")

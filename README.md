@@ -3,6 +3,8 @@
 Command to run: pytest .\test_TrbaBillTracker.py -s
 
 To Do:
-* Select a valid Bill Cycle
-* Search each bill
+* Search each bill in a loop until done
 * Validate matching information for each bill
+
+Installation Commands:
+* pip install -r .\requirements.txt
