@@ -9,4 +9,8 @@ def Wait(time, page):
 def SelectSession(page, option):
     # page.locator("select[name*='LegSess']").highlight()
     page.locator("select[name*='LegSess']").select_option(option)
+
+def EnterNextBill(page, NextBillNumber):
+    page.locator("input[name='NextBill']").type(NextBillNumber)
     
+    page.locator("input[name*='btnSubmitNextBill']").click()

@@ -42,7 +42,8 @@ def test_TrbaBillTracker():
         TirbaFunctions.RunBillComparison(page, billList[0])
 
         # Loop through the rest of the bills
-        page.locator("input[name='NextBill']").fill(billList[1])
+        for x in billList:
+            CommonActions.EnterNextBill(page, x)
 
         # Wait a few seconds
         CommonActions.Wait(5000, page)
